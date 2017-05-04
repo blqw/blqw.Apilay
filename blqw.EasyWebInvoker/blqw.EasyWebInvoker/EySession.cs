@@ -37,18 +37,18 @@ namespace blqw.EasyWebInvoker
         /// <param name="getConfig">用于获取配置值的委托</param>
         public void ImportConfig(Func<string, string> getConfig)
         {
-            var props = from property in GetType().GetRuntimeProperties()
-                        where property.CanWrite && !property.SetMethod.IsStatic
-                           && property.PropertyType == typeof(string)
-                        let config = property.GetCustomAttribute<ImportConfigAttribute>()
-                        where config != null
-                        select new { property, config };
+            var props = from p in GetType().GetRuntimeProperties()
+                        where p.CanWrite && !p.SetMethod.IsStatic
+                           && p.PropertyType == typeof(string)
+                        let a = p.GetCustomAttribute<ImportConfigAttribute>()
+                        where a != null
+                        select new KeyValuePair<string, PropertyInfo>(a.Name ?? p.Name, p);
             foreach (var p in props)
             {
-                var value = getConfig(p.config.Name ?? p.property.Name);
+                var value = getConfig(p.Key);
                 if (value != null)
                 {
-                    p.property.SetValue(this, value);
+                    p.Value.SetValue(this, value);
                 }
             }
         }

@@ -34,22 +34,24 @@ namespace blqw.EasyWebInvoker
         /// </summary>
         public virtual IEnumerable<KeyValuePair<string, string>> Query
             => from x in GetType().GetRuntimeProperties()
-               where x.IsDefined(typeof(QueryValueAttribute))
-               select new KeyValuePair<string, string>(x.Name, x.GetValue(this)?.ToString());
+               let a = x.GetCustomAttribute<QueryValueAttribute>()
+               where a != null
+               select new KeyValuePair<string, string>(a.Name ?? x.Name, x.GetValue(this)?.ToString());
 
         /// <summary>
         /// 请求头参数, 默认获取被标记为 <seealso cref="HeaderValueAttribute"/> 的属性值
         /// </summary>
         public virtual IEnumerable<KeyValuePair<string, string>> Headers
             => from x in GetType().GetRuntimeProperties()
-               where x.IsDefined(typeof(HeaderValueAttribute))
-               select new KeyValuePair<string, string>(x.Name, x.GetValue(this)?.ToString());
+               let a = x.GetCustomAttribute<HeaderValueAttribute>()
+               where a != null
+               select new KeyValuePair<string, string>(a.Name ?? x.Name, x.GetValue(this)?.ToString());
 
         /// <summary>
         /// 枚举被标记为 <seealso cref="BodyValueAttribute"/> 的属性
         /// </summary>
         /// <returns></returns>
-        private IEnumerable<KeyValuePair<PropertyInfo, BodyValueAttribute>> EnumerableBodyProperties() 
+        private IEnumerable<KeyValuePair<PropertyInfo, BodyValueAttribute>> EnumerableBodyProperties()
             => from property in GetType().GetRuntimeProperties()
                let body = property.GetCustomAttribute<BodyValueAttribute>()
                where body != null
@@ -69,8 +71,9 @@ namespace blqw.EasyWebInvoker
                 if (ContentType.Contains("x-www-form-urlencoded"))
                 {
                     var nv = from x in GetType().GetRuntimeProperties()
-                        where x.IsDefined(typeof(BodyValueAttribute))
-                        select new KeyValuePair<string, string>(x.Name, x.GetValue(this)?.ToString());
+                             let a = x.GetCustomAttribute<BodyValueAttribute>()
+                             where a != null
+                             select new KeyValuePair<string, string>(a.Name ?? x.Name, x.GetValue(this)?.ToString());
                     return new FormUrlEncodedContent(nv).ReadAsByteArrayAsync().ConfigureAwait(false).GetAwaiter().GetResult();
                 }
                 throw new NotImplementedException();
