@@ -20,5 +20,10 @@ namespace blqw.EasyWebInvoker
         /// <param name="cancellationToken">取消操作的取消标记</param>
         /// <returns></returns>
         Task<T> SendAsync<T>(Uri baseUrl, IEyRequest<T> request, CancellationToken cancellationToken);
+
+        /// <summary>
+        /// 获取或设置请求超时前等待的毫秒数。
+        /// </summary>
+        TimeSpan Timeout { get; set; }
     }
 }

@@ -39,15 +39,22 @@ namespace blqw.EasyWebInvoker
         {
             var props = from p in GetType().GetRuntimeProperties()
                         where p.CanWrite && !p.SetMethod.IsStatic
-                           && p.PropertyType == typeof(string)
                         let a = p.GetCustomAttribute<ImportConfigAttribute>()
                         where a != null
                         select new KeyValuePair<string, PropertyInfo>(a.Name ?? p.Name, p);
             foreach (var p in props)
             {
-                var value = getConfig(p.Key);
+                var value = (object)getConfig(p.Key);
                 if (value != null)
                 {
+                    if (p.Value.PropertyType != typeof(Uri))
+                    {
+                        value = new Uri((string)value);
+                    }
+                    else if (p.Value.PropertyType != typeof(string))
+                    {
+                        value = Convert.ChangeType(value, p.Value.PropertyType);
+                    }
                     p.Value.SetValue(this, value);
                 }
             }
@@ -65,6 +72,5 @@ namespace blqw.EasyWebInvoker
                 throw e.RequestException(1);
             }
         }
-
     }
 }

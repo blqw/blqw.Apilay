@@ -46,6 +46,15 @@ namespace blqw.EasyWebInvoker
         }
 
         /// <summary>
+        /// 获取或设置请求超时前等待的毫秒数。
+        /// </summary>
+        public TimeSpan Timeout
+        {
+            get => _client.Timeout;
+            set => _client.Timeout = value;
+        }
+
+        /// <summary>
         /// 使用异步方式发送请求并解析返回值
         /// </summary>
         /// <typeparam name="T">返回值类型</typeparam>
