@@ -1,13 +1,12 @@
 ### blqw.EasyWebInvoker
 通用第三方api调用框架
 
-### Demo
-一个Bing的翻译接口 *（现在已经不能用了）*
-接口地址是
-`https://api.datamarket.azure.com/Bing/MicrosoftTranslator/v1/Translate`
-授权方式采用`Authorization Basic`
-参数2个分别为`Text`（表示要翻译的文本）和`To`（表示翻译后的语言代码），比较特殊的是这2个参数需要使用一对单引号包起来
-且返回的是一个xml
+### Demo  
+一个Bing的翻译接口 *（现在已经不能用了）*  
+接口地址是: `https://api.datamarket.azure.com/Bing/MicrosoftTranslator/v1/Translate`  
+授权方式采用`Authorization Basic`  
+参数2个分别为`Text`（表示要翻译的文本）和`To`（表示翻译后的语言代码），比较特殊的是这2个参数需要使用一对单引号包起来  
+且返回的是一个xml  
 
 #### 首先定义一个翻译接口
 
