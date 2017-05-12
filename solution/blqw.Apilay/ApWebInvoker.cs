@@ -4,12 +4,12 @@ using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace blqw.EasyWebInvoker
+namespace blqw.Apilay
 {
     /// <summary>
-    /// 使用 <seealso cref="HttpClient"/> 执行 <seealso cref="IEyRequest{T}"/> 的执行器
+    /// 使用 <seealso cref="HttpClient"/> 执行 <seealso cref="IApRequest{T}"/> 的执行器
     /// </summary>
-    public class EyWebInvoker : IEyWebInvoker
+    public class ApWebInvoker : IApWebInvoker
     {
         /// <summary>
         /// 用于执行请求的 <seealso cref="HttpClient"/>
@@ -60,7 +60,7 @@ namespace blqw.EasyWebInvoker
         /// <typeparam name="T">返回值类型</typeparam>
         /// <param name="baseUrl">基础路径</param>
         /// <param name="request">请求对象</param>
-        public Task<T> SendAsync<T>(string baseUrl, IEyRequest<T> request)
+        public Task<T> SendAsync<T>(string baseUrl, IApRequest<T> request)
             => SendAsync(new Uri(baseUrl), request, CancellationToken.None);
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace blqw.EasyWebInvoker
         /// <param name="baseUrl">基础路径</param>
         /// <param name="request">请求对象</param>
         /// <param name="cancellationToken">取消操作的取消标记</param>
-        public Task<T> SendAsync<T>(string baseUrl, IEyRequest<T> request, CancellationToken cancellationToken)
+        public Task<T> SendAsync<T>(string baseUrl, IApRequest<T> request, CancellationToken cancellationToken)
             => SendAsync(new Uri(baseUrl), request, cancellationToken);
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace blqw.EasyWebInvoker
         /// <typeparam name="T">返回值类型</typeparam>
         /// <param name="baseUrl">基础路径</param>
         /// <param name="request">请求对象</param>
-        public Task<T> SendAsync<T>(Uri baseUrl, IEyRequest<T> request)
+        public Task<T> SendAsync<T>(Uri baseUrl, IApRequest<T> request)
             => SendAsync(baseUrl, request, CancellationToken.None);
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace blqw.EasyWebInvoker
         /// <param name="request">请求对象</param>
         /// <param name="cancellationToken">取消操作的取消标记</param>
         /// <returns></returns>
-        public async Task<T> SendAsync<T>(Uri baseUrl, IEyRequest<T> request, CancellationToken cancellationToken)
+        public async Task<T> SendAsync<T>(Uri baseUrl, IApRequest<T> request, CancellationToken cancellationToken)
         {
             if (request == null) throw new ArgumentNullException(nameof(request));
             var url = new UriBuilder(new Uri(baseUrl, request.Path));

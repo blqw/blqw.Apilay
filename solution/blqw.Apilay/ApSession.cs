@@ -6,30 +6,30 @@ using System.Text;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using blqw.EasyWebInvoker.Attributes;
+using blqw.Apilay.Attributes;
 
-namespace blqw.EasyWebInvoker
+namespace blqw.Apilay
 {
     /// <summary>
     /// 表示一个会话
     /// </summary>
-    public class EySession
+    public class ApSession
     {
         /// <summary>
         /// 请求执行器
         /// </summary>
-        public IEyWebInvoker Invoker { get; }
+        public IApWebInvoker Invoker { get; }
 
         /// <summary>
-        /// 表示一个会话, 默认使用 <seealso cref="EyWebInvoker"/> 执行器
+        /// 表示一个会话, 默认使用 <seealso cref="ApWebInvoker"/> 执行器
         /// </summary>
-        public EySession() => Invoker = new EyWebInvoker();
+        public ApSession() => Invoker = new ApWebInvoker();
 
         /// <summary>
         /// 表示一个会话, 并指定一个执行器
         /// </summary>
         /// <param name="invoker"></param>
-        public EySession(IEyWebInvoker invoker) => Invoker = invoker ?? new EyWebInvoker();
+        public ApSession(IApWebInvoker invoker) => Invoker = invoker ?? new ApWebInvoker();
 
         /// <summary>
         /// 导入配置
@@ -60,7 +60,7 @@ namespace blqw.EasyWebInvoker
             }
         }
 
-        protected Task<T> Invoke<T>(string baseUrl, IEyRequest<T> request, CancellationToken cancellationToken)
+        protected Task<T> Invoke<T>(string baseUrl, IApRequest<T> request, CancellationToken cancellationToken)
         {
             try
             {

@@ -1,11 +1,11 @@
 ﻿using System;
 
-namespace blqw.EasyWebInvoker
+namespace blqw.Apilay
 {
     /// <summary>
     /// 请求异常
     /// </summary>
-    public class EyRequestException : Exception
+    public class ApRequestException : Exception
     {
         /// <summary>
         /// 异常码
@@ -17,7 +17,7 @@ namespace blqw.EasyWebInvoker
         /// </summary>
         /// <param name="errcode">异常码</param>
         /// <param name="message">异常消息</param>
-        public EyRequestException(int errcode, string message)
+        public ApRequestException(int errcode, string message)
             : base(message)
         {
             HResult = errcode;
@@ -30,7 +30,7 @@ namespace blqw.EasyWebInvoker
         /// <param name="errcode">异常码</param>
         /// <param name="message">异常消息</param>
         /// <param name="inner">内部异常</param>
-        public EyRequestException(int errcode, string message, Exception inner)
+        public ApRequestException(int errcode, string message, Exception inner)
             : base(message, inner)
         {
             HResult = errcode;
@@ -42,7 +42,7 @@ namespace blqw.EasyWebInvoker
         /// </summary>
         /// <param name="errcode">异常码</param>
         /// <param name="message">异常消息</param>
-        public EyRequestException(string errcode, string message)
+        public ApRequestException(string errcode, string message)
             : base(message)
         {
             ErrCode = errcode;
@@ -54,7 +54,7 @@ namespace blqw.EasyWebInvoker
         /// <param name="errcode">异常码</param>
         /// <param name="message">异常消息</param>
         /// <param name="inner">内部异常</param>
-        public EyRequestException(string errcode, string message, Exception inner)
+        public ApRequestException(string errcode, string message, Exception inner)
             : base(message, inner)
         {
             ErrCode = errcode;

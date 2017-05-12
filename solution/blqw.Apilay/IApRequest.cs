@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace blqw.EasyWebInvoker
+namespace blqw.Apilay
 {
     /// <summary>
     /// 表示一个Http请求
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public interface IEyRequest<out T>
+    public interface IApRequest<out T>
     {
         /// <summary>
         /// 请求方法
@@ -46,7 +46,7 @@ namespace blqw.EasyWebInvoker
     /// <summary>
     /// 表示一个非泛型的Http请求
     /// </summary>
-    public interface IEyRequest : IEyRequest<object>
+    public interface IApRequest : IApRequest<object>
     {
 
     }

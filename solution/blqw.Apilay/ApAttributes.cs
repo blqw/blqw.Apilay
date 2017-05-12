@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace blqw.EasyWebInvoker.Attributes
+namespace blqw.Apilay.Attributes
 {
     /// <summary>
     /// 特性基类

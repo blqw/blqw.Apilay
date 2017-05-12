@@ -7,8 +7,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{A4210BB5-53C4-4056-B9B0-AF94079AA793}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>blqw.EasyWebInvoker</RootNamespace>
-    <AssemblyName>blqw.EasyWebInvoker</AssemblyName>
+    <RootNamespace>blqw.Apilay</RootNamespace>
+    <AssemblyName>blqw.Apilay</AssemblyName>
     <DefaultLanguage>zh-CN</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -36,14 +36,14 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EyExtensions.cs" />
-    <Compile Include="EyRequestException.cs" />
-    <Compile Include="EyWebInvoker.cs" />
-    <Compile Include="EyRequest.cs" />
-    <Compile Include="EySession.cs" />
-    <Compile Include="EyAttributes.cs" />
-    <Compile Include="IEyWebInvoker.cs" />
-    <Compile Include="IEyRequest.cs" />
+    <Compile Include="ApExtensions.cs" />
+    <Compile Include="ApRequestException.cs" />
+    <Compile Include="ApWebInvoker.cs" />
+    <Compile Include="ApRequest.cs" />
+    <Compile Include="ApSession.cs" />
+    <Compile Include="ApAttributes.cs" />
+    <Compile Include="IApWebInvoker.cs" />
+    <Compile Include="IApRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

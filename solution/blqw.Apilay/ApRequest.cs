@@ -1,17 +1,17 @@
-﻿using blqw.EasyWebInvoker.Attributes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Reflection;
+using blqw.Apilay.Attributes;
 
-namespace blqw.EasyWebInvoker
+namespace blqw.Apilay
 {
     /// <summary>
     /// Http请求的抽象基类
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class EyRequest<T> : IEyRequest<T>
+    public abstract class ApRequest<T> : IApRequest<T>
     {
         /// <summary>
         /// 请求方法, 默认: GET
