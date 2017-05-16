@@ -1,4 +1,3 @@
-### blqw.EasyWebInvoker
 通用第三方api调用框架
 
 ### Demo  
@@ -13,11 +12,11 @@
 ```cs
 class TranslateV1 : ApRequest<string>
 {
-    [Header]
+    [HeaderValue]
     public string Authorization { get; set; }
-    [Query]
+    [QueryValue]
     public string Text { get; }
-    [Query]
+    [QueryValue]
     public string To { get; }
 
     public TranslateV1(string text, string to = "zh-CHS")
