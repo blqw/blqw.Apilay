@@ -47,7 +47,7 @@ namespace blqw.Apilay
                 var value = (object)getConfig(p.Key);
                 if (value != null)
                 {
-                    if (p.Value.PropertyType != typeof(Uri))
+                    if (p.Value.PropertyType == typeof(Uri))
                     {
                         value = new Uri((string)value);
                     }
