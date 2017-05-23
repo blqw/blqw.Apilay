@@ -35,20 +35,21 @@ namespace blqw.Apilay
         public virtual IEnumerable<KeyValuePair<string, string>> Query
             => from x in GetType().GetRuntimeProperties()
                let a = x.GetCustomAttribute<QueryValueAttribute>()
-                let value = x.GetValue(this)?.ToString()
-                where value != null
-                select new KeyValuePair<string, string>(a.Name ?? x.Name, value);
+               where a != null
+               let value = x.GetValue(this)?.ToString()
+               where value != null
+               select new KeyValuePair<string, string>(a.Name ?? x.Name, value);
 
         /// <summary>
         /// 请求头参数, 默认获取被标记为 <seealso cref="HeaderValueAttribute"/> 的属性值
         /// </summary>
         public virtual IEnumerable<KeyValuePair<string, string>> Headers
             => from x in GetType().GetRuntimeProperties()
-                let a = x.GetCustomAttribute<HeaderValueAttribute>()
-                where a != null
-                let value = x.GetValue(this)?.ToString()
-                where value != null
-                select new KeyValuePair<string, string>(a.Name ?? x.Name, value);
+               let a = x.GetCustomAttribute<HeaderValueAttribute>()
+               where a != null
+               let value = x.GetValue(this)?.ToString()
+               where value != null
+               select new KeyValuePair<string, string>(a.Name ?? x.Name, value);
 
         /// <summary>
         /// 枚举被标记为 <seealso cref="BodyValueAttribute"/> 的属性
@@ -79,7 +80,7 @@ namespace blqw.Apilay
                              let value = x.GetValue(this)?.ToString()
                              where value != null
                              select new KeyValuePair<string, string>(a.Name ?? x.Name, value);
-                    return new FormUrlEncodedContent(nv).ReadAsByteArrayAsync().ConfigureAwait(false).GetAwaiter().GetResult();
+                    return nv.Any() ? new FormUrlEncodedContent(nv).ReadAsByteArrayAsync().ConfigureAwait(false).GetAwaiter().GetResult() : new byte[0];
                 }
                 throw new NotImplementedException();
             }

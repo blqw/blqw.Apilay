@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading;
@@ -94,8 +95,8 @@ namespace blqw.Apilay
         {
             if (request == null) throw new ArgumentNullException(nameof(request));
             var url = new UriBuilder(new Uri(baseUrl, request.Path));
-            var encode = new FormUrlEncodedContent(request.Query);
-            var query = await encode.ReadAsStringAsync();
+            var q = request.Query.ToArray();
+            var query = q.Length > 0 ? await new FormUrlEncodedContent(q).ReadAsStringAsync() : "";
             if (url.Query.Length > 1)
             {
                 url.Query += "&" + query;
@@ -115,11 +116,11 @@ namespace blqw.Apilay
                 }
             }
 
-            var body = request.Body;
+            var body = request.Body?.ToArray();
             if (body != null)
             {
                 var contentType = request.ContentType;
-                message.Content = new ByteArrayContent(request.Body);
+                message.Content = new ByteArrayContent(body);
                 message.Content.Headers.ContentType = contentType == null ? null : MediaTypeHeaderValue.Parse(contentType);
             }
 
